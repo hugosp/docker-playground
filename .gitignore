@@ -1,0 +1,63 @@
+# dirs
+vendor/
+node_modules/
+.cache/
+.parcel-cache
+.npm
+.eslintcache
+.yarn
+dist/
+.vscode*
+
+# vcs
+.git/
+.hg/
+.svn/
+
+# cache
+*.cache
+*.log
+*~
+*#
+*.bak
+*.BAK
+*.old
+*.OLD
+*.off
+*.OFF
+*.dist
+*.DIST
+*.orig
+*.ORIG
+*.rej
+*.REJ
+*.swp
+*.swo
+*.swn
+*.swm
+*.tmp
+ 
+
+# random files
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# secret 
+.env
+config.php
+*_rsa
+*_rsa.*
+*_dsa
+*_dsa.*
+*_keys
+*.pem
+*.key
+*.gpg
+
+# os
+.DS_Store*
+
+# packaging
+._pkg
