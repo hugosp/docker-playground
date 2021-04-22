@@ -1,0 +1,56 @@
+version: "3"
+
+services:
+  webserver:
+    build: 
+      context: ./webserver
+    container_name: webserver
+    restart: 'always'
+    ports:
+      - "80:80"
+      - "443:443"
+    links: 
+      - database
+    volumes: 
+      - ./code:/var/www/html
+      - ./config/php.ini:/usr/local/etc/php/php.ini
+      - ./config/vhosts:/etc/apache2/sites-enabled
+      - ./logs/apache2:/var/log/apache2
+  database:
+    build:
+      context: "./database"
+    container_name: 'database'
+    restart: 'always'
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes: 
+      - ./data/mysql:/var/lib/mysql
+      - ./logs/mysql:/var/log/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test123
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: 'phpmyadmin'
+    links:
+      - database
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+      PMA_USER: test
+      PMA_PASSWORD: test123
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test123
+    ports:
+      - '8080:80'
+    volumes: 
+      - /sessions
+      - ./config/php/php.ini:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
+  redis:
+    container_name: 'redis'
+    image: redis:latest
+    ports:
+      - "127.0.0.1:6379:6379"

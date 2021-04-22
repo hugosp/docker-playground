@@ -1,0 +1,36 @@
+version: '3.2'
+services:
+  webserver1:
+      build: ./webserver
+      tty: true
+      volumes:
+        - ./webserver/src:/var/www/html
+        - ./webserver/vhosts:/etc/apache2/sites-enabled
+        - ./logs/apache2:/var/log/apache2
+  webserver2:
+      build: ./webserver
+      tty: true
+      volumes:
+        - ./webserver/src:/var/www/html
+        - ./webserver/vhosts:/etc/apache2/sites-enabled
+        - ./logs/apache2:/var/log/apache2
+  webserver3:
+      build: ./webserver
+      tty: true
+      volumes:
+        - ./webserver/src:/var/www/html
+        - ./webserver/vhosts:/etc/apache2/sites-enabled
+        - ./logs/apache2:/var/log/apache2
+  loadbalancer:
+      build: ./loadbalancer
+      tty: true
+      volumes:
+      - ./loadbalancer/nginx.conf:/etc/nginx/nginx.conf:ro
+      links:
+          - webserver1
+          - webserver2
+          - webserver3
+      ports:
+          - '80:80'
+volumes:
+  webserver:

@@ -1,0 +1,11 @@
+{
+    "name": "hugo/dock-test",
+    "require": {
+        "symfony/var-dumper": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "HEWGO\\": "src/"
+        }
+    }
+}
