@@ -9,7 +9,7 @@ node_modules/
 dist/
 .vscode*
 
-data/mysql/**
+data/mysql/**/**
 
 # vcs
 .git/
