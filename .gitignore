@@ -9,6 +9,8 @@ node_modules/
 dist/
 .vscode*
 
+data/mysql/**
+
 # vcs
 .git/
 .hg/
@@ -36,7 +38,7 @@ dist/
 *.swn
 *.swm
 *.tmp
- 
+
 
 # random files
 pids
@@ -44,7 +46,7 @@ pids
 *.seed
 *.pid.lock
 
-# secret 
+# secret
 .env
 config.php
 *_rsa
