@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  webserver:
+    build:
+      context: ./webserver
+    container_name: webserver
+    restart: 'always'
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./apps:/var/www/
+      - ./webserver/config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./webserver/config/apache/vhosts:/etc/apache2/sites-enabled
+      - ./logs/apache2:/var/log/apache2
